@@ -1,12 +1,17 @@
-import logoImg from '../../assets/logo.svg'
+import {ReactComponent as LogoIcon} from '../../assets/logo.svg'
 import { Container, Content } from './style'
 
-export function Header() {
+interface HeaderProps {
+  onOpenNewTransaction: () => void
+}
+
+export function Header({onOpenNewTransaction}:HeaderProps) {
   return (
     <Container>
       <Content>
-        <img src={logoImg} alt="dt money"/>
-        <button type="button">Nova transação</button>
+        <LogoIcon />
+
+        <button type="button" onClick={onOpenNewTransaction}>Nova transação</button>
       </Content>
     </Container>
   )

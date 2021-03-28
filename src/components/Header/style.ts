@@ -21,9 +21,10 @@ export const  Content = styled.div`
     padding: 1.2rem 3.2rem;
     border-radius: 0.4rem;
 
+    transition: filter 0.2s;
+    
     &:hover {
       filter: brightness(0.9);
-      transition: filter 0.2s;
     }
   }
 `;
