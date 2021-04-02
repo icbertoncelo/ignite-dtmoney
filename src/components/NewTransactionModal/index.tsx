@@ -1,13 +1,13 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import Modal from "react-modal";
-import { Container, TransactionTypeContainer, RadioBox } from "./styles";
+
+import { TransactionsContext } from "../../contexts/transactions";
 
 import {ReactComponent as CloseIcon} from '../../assets/close.svg'
 import {ReactComponent as IncomeIcon} from '../../assets/income.svg'
 import {ReactComponent as OutcomeIcon} from '../../assets/outcome.svg'
 
-import { api } from '../../services/api'
-
+import { Container, TransactionTypeContainer, RadioBox } from "./styles";
 interface NewTransactionModalProps {
   isOpen: boolean
   onRequestClose: () => void
@@ -16,22 +16,24 @@ interface NewTransactionModalProps {
 Modal.setAppElement('#root')
 
 export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModalProps) {
+  const { createTransaction } = useContext(TransactionsContext)
+
   const [type, setType] = useState('deposit')
   const [formData, setFormData] = useState({
     title: '',
-    value: 0,
+    amount: 0,
     category: ''
   })
 
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault()
 
-    const data = {
-      ...formData, 
+    createTransaction({
+      amount: formData.amount,
+      category: formData.category,
+      title: formData.title,
       type
-    }
-
-    api.post('/transactions', data)
+    })
   }
 
   function handleChangeFormInput(event: ChangeEvent<HTMLInputElement>) {
@@ -68,8 +70,8 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
         <input 
           placeholder="Valor"
           type="number"
-          name='value'
-          value={formData.value}
+          name='amount'
+          value={formData.amount}
           onChange={handleChangeFormInput}
         />
         
