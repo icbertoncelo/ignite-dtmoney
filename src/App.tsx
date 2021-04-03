@@ -6,7 +6,7 @@ import { NewTransactionModal } from "./components/NewTransactionModal";
 import { useState } from "react";
 
 import { initServer } from './server'
-import { TransactionProvider } from "./contexts/transactions";
+import { TransactionProvider } from "./hooks/usetransactions";
 
 initServer()
 

@@ -1,5 +1,5 @@
-import { useContext, useMemo } from "react";
-import { TransactionsContext } from "../../contexts/transactions";
+import { useMemo } from "react";
+import { useTransactions } from "../../hooks/usetransactions";
 
 import { ReactComponent as IncomeIcon} from '../../assets/income.svg'
 import  { ReactComponent as OutcomeIcon} from '../../assets/outcome.svg'
@@ -8,7 +8,7 @@ import  { ReactComponent as TotalIcon} from '../../assets/total.svg'
 import { Container } from "./styles";
 
 export function Summary() { 
-  const { transactions } = useContext(TransactionsContext)
+  const { transactions } = useTransactions()
 
   const summary = useMemo(() => {
     return transactions.reduce((accumulator, transaction) => {
