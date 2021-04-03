@@ -45,7 +45,7 @@ export function Summary() {
           <p>Saídas</p>
           <OutcomeIcon />
         </header>
-        <strong>- {new Intl.NumberFormat('pt-BR', {
+        <strong>-{new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
         }).format(summary.widhdraws)}</strong>

@@ -1,3 +1,4 @@
+import { darken } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -5,6 +6,26 @@ export const Container = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 3.2rem;
   margin-top: -10rem;
+  overflow-x: auto;
+
+  ::-webkit-scrollbar {
+    height: 0.8rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    background: white
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background:var(--text-body);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${darken(0.1, "#969CB3")}
+  }
 
   div {
     background: var(--shape);
